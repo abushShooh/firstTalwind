@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лесная Усадьба</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: "#4f8f2f",
+            "forest-dark": "#2d6b1a",
+            ink: "#1f1f1f",
+            muted: "#363636"
+          },
+          boxShadow: {
+            call: "0 14px 36px rgba(79, 143, 47, 0.25)"
+          },
+          fontFamily: {
+            sans: ["Segoe UI", "Tahoma", "Geneva", "Verdana", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    #mobile-menu {
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    #mobile-menu.is-open {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-glow {
+      background:
+        linear-gradient(90deg, rgba(122, 165, 36, 0.86) 0%, rgba(122, 165, 36, 0.72) 27%, rgba(122, 165, 36, 0.18) 58%, rgba(0, 0, 0, 0) 100%),
+        radial-gradient(circle at top right, rgba(255, 227, 111, 0.35), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(28, 45, 6, 0.52), transparent 30%);
+    }
+
+    .hero-card {
+      background-image:
+        linear-gradient(180deg, rgba(101, 148, 26, 0.28) 0%, rgba(18, 32, 5, 0.45) 100%),
+        url("../images/bgOfHero.svg");
+      background-position: 34% center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-card {
+        background-position: center;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white font-sans text-ink">
+  <header class="border-b border-black/5">
+    <div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+      <div class="flex min-h-[84px] items-center justify-between gap-4 lg:min-h-[108px]">
+        <a href="#" class="shrink-0">
+          <img
+            src="../images/Logo.svg"
+            alt="Лесная усадьба"
+            class="h-auto w-[150px] sm:w-[210px] lg:w-[280px]"
+          >
+        </a>
+
+        <nav class="hidden items-center gap-8 xl:flex">
+          <a href="#" class="text-[16px] font-medium text-muted transition hover:text-forest">О нас</a>
+          <a href="#" class="text-[16px] font-medium text-muted transition hover:text-forest">Услуги</a>
+          <a href="#" class="text-[16px] font-medium text-muted transition hover:text-forest">Специалисты</a>
+          <a href="#" class="text-[16px] font-medium text-muted transition hover:text-forest">Контакты</a>
+        </nav>
+
+        <div class="hidden items-center gap-6 xl:flex">
+          <a href="tel:+74957977735" class="text-right leading-tight text-muted transition hover:text-forest">
+            <span class="block text-[13px] font-medium">Есть номер! Звоните</span>
+            <span class="block text-[16px] font-semibold tracking-[0.02em]">+7 495 797 77 35</span>
+          </a>
+          <button
+            type="button"
+            class="rounded-full bg-forest px-9 py-4 text-[15px] font-semibold text-white shadow-call transition hover:bg-forest-dark"
+          >
+            Заказать звонок
+          </button>
+        </div>
+
+        <div class="flex items-center gap-4 xl:hidden">
+          <a
+            href="tel:+74957977735"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full text-forest transition hover:bg-forest/10"
+            aria-label="Позвонить"
+          >
+            <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current" aria-hidden="true">
+              <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.1.37 2.28.56 3.5.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.22.19 2.4.56 3.5a1 1 0 0 1-.24 1.01l-2.2 2.2Z"/>
+            </svg>
+          </a>
+
+          <button
+            id="menu-button"
+            type="button"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted transition hover:bg-black/5"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Открыть меню"
+          >
+            <svg viewBox="0 0 24 24" class="h-8 w-8 fill-current" aria-hidden="true">
+              <path d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm.75 4.5a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75Z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="hidden border-t border-black/5 pb-5 pt-4 xl:hidden">
+        <nav class="flex flex-col items-center gap-4 text-center">
+          <a href="#" class="text-lg font-medium text-muted transition hover:text-forest">О нас</a>
+          <a href="#" class="text-lg font-medium text-muted transition hover:text-forest">Услуги</a>
+          <a href="#" class="text-lg font-medium text-muted transition hover:text-forest">Специалисты</a>
+          <a href="#" class="text-lg font-medium text-muted transition hover:text-forest">Контакты</a>
+        </nav>
+
+        <div class="mt-5 space-y-4 text-center">
+          <a href="tel:+74957977735" class="block leading-tight text-muted transition hover:text-forest">
+            <span class="block text-sm font-medium">Есть номер! Звоните</span>
+            <span class="block text-xl font-semibold">+7 495 797 77 35</span>
+          </a>
+          <button
+            type="button"
+            class="w-full rounded-full bg-forest px-6 py-4 text-base font-semibold text-white shadow-call transition hover:bg-forest-dark"
+          >
+            Заказать звонок
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="px-0 pb-6 pt-4 sm:px-4 sm:pb-8 sm:pt-6 lg:px-6 lg:pb-10">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="hero-card relative overflow-hidden rounded-[34px] text-white shadow-[0_30px_90px_rgba(39,68,10,0.18)] sm:rounded-[42px] lg:min-h-[720px] lg:rounded-[56px]">
+          <div class="hero-glow absolute inset-0"></div>
+          <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/55 to-transparent sm:h-44 lg:h-48"></div>
+
+          <div class="relative z-10 flex min-h-[530px] flex-col px-7 pb-8 pt-7 sm:min-h-[620px] sm:px-10 sm:pb-10 sm:pt-10 lg:min-h-[720px] lg:px-16 lg:pb-14 lg:pt-20">
+            <div class="max-w-[560px]">
+              <p class="text-[15px] font-semibold uppercase leading-[1.05] tracking-[0.01em] sm:text-[20px] lg:text-[44px] lg:normal-case">
+                Подмосковная резиденция
+              </p>
+              <h1 class="mt-1 text-[18px] font-extrabold uppercase leading-none tracking-tight sm:mt-2 sm:text-[36px] lg:text-[68px]">
+                "Лесная усадьба"
+              </h1>
+              <p class="mt-3 max-w-[280px] text-[14px] leading-[1.15] text-white/95 sm:mt-4 sm:max-w-[360px] sm:text-[20px] lg:mt-6 lg:max-w-[420px] lg:text-[26px]">
+                Пансионат для пожилых премиум-класса
+              </p>
+            </div>
+
+            <div class="mt-auto pt-10 lg:pt-16">
+              <ul class="flex flex-col gap-4 text-[12px] leading-[1.2] sm:gap-5 sm:text-[16px] lg:grid lg:grid-cols-3 lg:gap-10 lg:text-[20px] lg:leading-[1.22]">
+                <li class="flex items-start gap-3 lg:max-w-[300px]">
+                  <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-lime-400 lg:mt-3 lg:h-3 lg:w-3"></span>
+                  <span>Для тех, кто любит своих родных и близких</span>
+                </li>
+                <li class="flex items-start gap-3 lg:max-w-[300px]">
+                  <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-lime-400 lg:mt-3 lg:h-3 lg:w-3"></span>
+                  <span>Безопасная среда и интересный досуг</span>
+                </li>
+                <li class="flex items-start gap-3 lg:max-w-[360px]">
+                  <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-lime-400 lg:mt-3 lg:h-3 lg:w-3"></span>
+                  <span>Долгосрочные и краткосрочные программы пребывания</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const menuButton = document.getElementById("menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+
+      if (isOpen) {
+        mobileMenu.classList.remove("is-open");
+        window.setTimeout(() => {
+          if (menuButton.getAttribute("aria-expanded") === "false") {
+            mobileMenu.classList.add("hidden");
+          }
+        }, 220);
+      } else {
+        mobileMenu.classList.remove("hidden");
+        window.requestAnimationFrame(() => {
+          mobileMenu.classList.add("is-open");
+        });
+      }
+    });
+  </script>
+</body>
+</html>
